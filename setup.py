@@ -15,4 +15,5 @@ setuptools.setup(
     author_email='jayjhwu@gmail.com',
     url='https://github.com/jayjiahua/phantomjs-bin-pip',
     packages=['phantomjs_bin'],
+    include_package_data=True,
 )
