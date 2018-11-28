@@ -1,1 +1,2 @@
+recursive-include bin *
 recursive-include phantomjs_bin/bin *
