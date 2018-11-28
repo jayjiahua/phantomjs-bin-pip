@@ -50,8 +50,6 @@ class install(install_base):
         os_info = os_type_mapping[os_type]
         bin_path = os.path.join(bin_dir, os_info["dir"], os_info["files"].get(os_bits, os_info["files"]["64bit"]))
 
-        print "Installing phantomjs-2.1.1 for %s..." % os_type
-
         if not os.path.exists(install_dir):
             os.mkdir(install_dir)
 
