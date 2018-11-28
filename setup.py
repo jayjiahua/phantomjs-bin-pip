@@ -17,24 +17,12 @@ class install(install_base):
         os_type_mapping = {
             "Windows": {
                 "dir": "windows",
-                "files": {
-                    "32bit": "phantomjs.exe",
-                    "64bit": "phantomjs.exe",
-                }
             },
             "Darwin": {
                 "dir": "macosx",
-                "files": {
-                    "32bit": "phantomjs",
-                    "64bit": "phantomjs",
-                }
             },
             "Linux": {
                 "dir": "linux",
-                "files": {
-                    "32bit": "phantomjs-i686",
-                    "64bit": "phantomjs-x86_64",
-                }
             },
         }
 
@@ -48,16 +36,16 @@ class install(install_base):
         if os_type not in os_type_mapping:
             raise EnvironmentError("Unsupported system type: %s" % os_type)
 
-        os_info = os_type_mapping[os_type]
-        bin_path = os.path.join(bin_dir, os_info["dir"], os_info["files"].get(os_bits, os_info["files"]["64bit"]))
-
-        if not os.path.exists(install_dir):
-            os.mkdir(install_dir)
-
         if os_type == 'Windows':
             installed_bin_filename = "phantomjs.exe"
         else:
             installed_bin_filename = "phantomjs"
+
+        os_info = os_type_mapping[os_type]
+        bin_path = os.path.join(bin_dir, os_info["dir"], installed_bin_filename)
+
+        if not os.path.exists(install_dir):
+            os.mkdir(install_dir)
 
         install_path = os.path.join(install_dir, installed_bin_filename)
         # move bin file
@@ -71,7 +59,7 @@ class install(install_base):
 
 
 setuptools.setup(
-    name='phantomjs_binary',
+    name='phantomjs-binary',
     version='1.0',
     description='A pip package for installing binary files of phantomjs',
     long_description=long_description,
