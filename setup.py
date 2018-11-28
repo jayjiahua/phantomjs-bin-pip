@@ -2,6 +2,7 @@
 import os
 import platform
 import shutil
+import stat
 
 import setuptools
 from setuptools.command.install import install as install_base
@@ -58,8 +59,13 @@ class install(install_base):
         else:
             installed_bin_filename = "phantomjs"
 
+        install_path = os.path.join(install_dir, installed_bin_filename)
         # move bin file
-        shutil.copyfile(bin_path, os.path.join(install_dir, installed_bin_filename))
+        shutil.copyfile(bin_path, install_path)
+
+        # make executable
+        st = os.stat(install_path)
+        os.chmod(install_path, st.st_mode | stat.S_IEXEC)
 
         install_base.run(self)
 
