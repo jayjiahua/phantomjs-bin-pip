@@ -60,7 +60,7 @@ class install(install_base):
 
 setuptools.setup(
     name='phantomjs-binary',
-    version='2.1.1',
+    version='2.1.2',
     description='A pip package for installing binary files of phantomjs',
     long_description=long_description,
     author='jayjiahua',
