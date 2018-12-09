@@ -3,7 +3,7 @@ import os
 import platform
 import shutil
 import stat
-
+from glob import glob
 import setuptools
 from setuptools.command.install import install as install_base
 
@@ -69,4 +69,5 @@ setuptools.setup(
     packages=['phantomjs_bin'],
     include_package_data=True,
     cmdclass={'install': install},
+    package_data={'bin': glob('*/*')},
 )
